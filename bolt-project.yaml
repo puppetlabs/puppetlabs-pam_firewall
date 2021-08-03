@@ -1,0 +1,4 @@
+---
+name: pam_firewall
+modules:
+- puppetlabs/firewall
