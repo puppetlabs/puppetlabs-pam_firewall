@@ -1,0 +1,55 @@
+{
+  "name": "puppetlabs-pam_firewall",
+  "version": "1.0.0",
+  "author": "Puppet, Inc.",
+  "summary": "Firewall rules for Puppet Application Manager",
+  "license": "Apache-2.0",
+  "source": "https://forge.puppetlabs.com/puppetlabs/pam_firewall",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-pam_firewall",
+  "dependencies": [
+    {
+      "name": "puppetlabs-firewall",
+      "version_requirement": ">= 2.7.0 < 4.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "7",
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "16.04",
+        "18.04",
+        "20.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.10.0 < 8.0.0"
+    }
+  ],
+  "pdk-version": "2.1.1",
+  "template-url": "pdk-default#2.1.1",
+  "template-ref": "tags/2.1.1-0-g03daa92"
+}
