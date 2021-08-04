@@ -17,6 +17,8 @@ Configures firewall rules using the [firewall] module for Puppet Application Man
 
 This module configures firewall rules using the [firewall] module for Puppet Application Manager (PAM) installed on Puppet-supported Kubernetes.
 
+The `preserve-iptables-config` option should be supplied while installing PAM to leave the `iptables` service enabled, as in `bash -s preserve-iptables-config`. The PAM installation must be run after applying this module to ensure Kubernetes firewall rules are registered with the `iptables` service.
+
 It specifically avoids purging foreign rules and chains created by Kubernetes. It also exposes ports to cluster members that need access (currently treats primary and secondary nodes identically) and exposes application ports globally.
 
 ## Setup
