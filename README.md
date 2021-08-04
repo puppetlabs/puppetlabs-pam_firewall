@@ -26,43 +26,38 @@ It specifically avoids purging foreign rules and chains created by Kubernetes. I
 The module declares a single class that can be applied to your cluster members.
 
 The defaults work for a [Standalone] install
-```
-include ::firewall
-include ::pam_firewall
-```
+
+    include ::firewall
+    include ::pam_firewall
 
 An [example](examples/init.pp) is provided that demonstrates using this while locking down most other inbound access. You can run it with [Bolt]
-```
-bolt module install
-bolt apply examples/init.pp --run-as root --targets $target
-```
+
+    bolt module install
+    bolt apply examples/init.pp --run-as root --targets $target
 
 ## Usage
 
 If installing an HA cluster, you'll need to provide `cluster_nodes` for all members to enable intra-cluster communication
-```
-include ::firewall
-class {'::pam_firewall':
-    cluster_nodes => ['10.20.0.1', '10.20.0.2', '10.20.0.3'],
-}
-```
+
+    include ::firewall
+    class {'::pam_firewall':
+        cluster_nodes => ['10.20.0.1', '10.20.0.2', '10.20.0.3'],
+    }
 
 You can also override `app_ports` to be more restrictive if not using all ports. For example, port 9001 is only used by CD4PE in an offline install, and port 8000 is only used by CD4PE for webhooks
-```
-include ::firewall
-class {'::pam_firewall':
-    app_ports => [443],
-}
-```
+
+    include ::firewall
+    class {'::pam_firewall':
+        app_ports => [443],
+    }
 
 If you need to override pod and/or service subnets for a PAM install, you'll also need to provide those here
-```
-include ::firewall
-class {'::pam_firewall':
-    pod_subnet     => '10.48.0.0/24',
-    service_subnet => '10.48.1.0/24',
-}
-```
+
+    include ::firewall
+    class {'::pam_firewall':
+        pod_subnet     => '10.48.0.0/24',
+        service_subnet => '10.48.1.0/24',
+    }
 
 [firewall]: https://forge.puppet.com/modules/puppetlabs/firewall
 [Standalone]: https://puppet.com/docs/continuous-delivery/4.x/pam/pam-node-arch.html
