@@ -19,143 +19,175 @@ describe 'pam_firewall' do
       it { is_expected.to contain_firewallchain('PREROUTING:raw:IPv4').with('ignore_foreign' => true) }
       it { is_expected.to contain_firewallchain('OUTPUT:raw:IPv4').with('ignore_foreign' => true) }
 
-      it { is_expected.to contain_firewall('110 allow tcp port 2379-2380 from 172.16.254.254 for etcd').with(
-        'ensure' => 'present',
-        'source' => '172.16.254.254',
-        'dport'  => [2379, 2380],
-        'proto'  => 'tcp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow tcp port 2379-2380 from 172.16.254.254 for etcd').with(
+          'ensure' => 'present',
+          'source' => '172.16.254.254',
+          'dport'  => [2_379, 2_380],
+          'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
 
-      it { is_expected.to contain_firewall('110 allow tcp port 6783 from 172.16.254.254 for Weave').with(
-        'ensure' => 'present',
-        'source' => '172.16.254.254',
-        'dport'  => 6783,
-        'proto'  => 'tcp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow tcp port 6783 from 172.16.254.254 for Weave').with(
+          'ensure' => 'present',
+          'source' => '172.16.254.254',
+          'dport'  => 6_783,
+          'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
 
-      it { is_expected.to contain_firewall('110 allow udp ports 6783-6784 from 172.16.254.254 for Weave').with(
-        'ensure' => 'present',
-        'source' => '172.16.254.254',
-        'dport'  => [6783, 6784],
-        'proto'  => 'udp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow udp ports 6783-6784 from 172.16.254.254 for Weave').with(
+          'ensure' => 'present',
+          'source' => '172.16.254.254',
+          'dport'  => [6_783, 6_784],
+          'proto'  => 'udp',
+          'action' => 'accept',
+        )
+      }
 
-      it { is_expected.to contain_firewall('110 allow tcp port 10250 from 172.16.254.254 for Kubelet').with(
-        'ensure' => 'present',
-        'source' => '172.16.254.254',
-        'dport'  => 10250,
-        'proto'  => 'tcp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow tcp port 10250 from 172.16.254.254 for Kubelet').with(
+          'ensure' => 'present',
+          'source' => '172.16.254.254',
+          'dport'  => 10_250,
+          'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
     end
 
-    context "with 2 nodes" do
+    context 'with 2 nodes' do
       let(:facts) { os_facts }
       let(:params) { { 'cluster_nodes' => ['172.16.0.0', '172.16.0.1'] } }
 
       it { is_expected.to compile }
 
-      it { is_expected.to contain_firewall('110 allow tcp port 2379-2380 from 172.16.0.0 for etcd').with(
-        'ensure' => 'present',
-        'source' => '172.16.0.0',
-        'dport'  => [2379, 2380],
-        'proto'  => 'tcp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow tcp port 2379-2380 from 172.16.0.0 for etcd').with(
+          'ensure' => 'present',
+          'source' => '172.16.0.0',
+          'dport'  => [2_379, 2_380],
+          'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
 
-      it { is_expected.to contain_firewall('110 allow tcp port 6783 from 172.16.0.0 for Weave').with(
-        'ensure' => 'present',
-        'source' => '172.16.0.0',
-        'dport'  => 6783,
-        'proto'  => 'tcp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow tcp port 6783 from 172.16.0.0 for Weave').with(
+          'ensure' => 'present',
+          'source' => '172.16.0.0',
+          'dport'  => 6_783,
+          'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
 
-      it { is_expected.to contain_firewall('110 allow udp ports 6783-6784 from 172.16.0.0 for Weave').with(
-        'ensure' => 'present',
-        'source' => '172.16.0.0',
-        'dport'  => [6783, 6784],
-        'proto'  => 'udp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow udp ports 6783-6784 from 172.16.0.0 for Weave').with(
+          'ensure' => 'present',
+          'source' => '172.16.0.0',
+          'dport'  => [6_783, 6_784],
+          'proto'  => 'udp',
+          'action' => 'accept',
+        )
+      }
 
-      it { is_expected.to contain_firewall('110 allow tcp port 10250 from 172.16.0.0 for Kubelet').with(
-        'ensure' => 'present',
-        'source' => '172.16.0.0',
-        'dport'  => 10250,
-        'proto'  => 'tcp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow tcp port 10250 from 172.16.0.0 for Kubelet').with(
+          'ensure' => 'present',
+          'source' => '172.16.0.0',
+          'dport'  => 10_250,
+          'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
 
-      it { is_expected.to contain_firewall('110 allow tcp port 2379-2380 from 172.16.0.1 for etcd').with(
-        'ensure' => 'present',
-        'source' => '172.16.0.1',
-        'dport'  => [2379, 2380],
-        'proto'  => 'tcp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow tcp port 2379-2380 from 172.16.0.1 for etcd').with(
+          'ensure' => 'present',
+          'source' => '172.16.0.1',
+          'dport'  => [2_379, 2_380],
+          'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
 
-      it { is_expected.to contain_firewall('110 allow tcp port 6783 from 172.16.0.1 for Weave').with(
-        'ensure' => 'present',
-        'source' => '172.16.0.1',
-        'dport'  => 6783,
-        'proto'  => 'tcp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow tcp port 6783 from 172.16.0.1 for Weave').with(
+          'ensure' => 'present',
+          'source' => '172.16.0.1',
+          'dport'  => 6_783,
+          'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
 
-      it { is_expected.to contain_firewall('110 allow udp ports 6783-6784 from 172.16.0.1 for Weave').with(
-        'ensure' => 'present',
-        'source' => '172.16.0.1',
-        'dport'  => [6783, 6784],
-        'proto'  => 'udp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow udp ports 6783-6784 from 172.16.0.1 for Weave').with(
+          'ensure' => 'present',
+          'source' => '172.16.0.1',
+          'dport'  => [6_783, 6_784],
+          'proto'  => 'udp',
+          'action' => 'accept',
+        )
+      }
 
-      it { is_expected.to contain_firewall('110 allow tcp port 10250 from 172.16.0.1 for Kubelet').with(
-        'ensure' => 'present',
-        'source' => '172.16.0.1',
-        'dport'  => 10250,
-        'proto'  => 'tcp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow tcp port 10250 from 172.16.0.1 for Kubelet').with(
+          'ensure' => 'present',
+          'source' => '172.16.0.1',
+          'dport'  => 10_250,
+          'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
     end
 
-    context "with limited app ports" do
+    context 'with limited app ports' do
       let(:facts) { os_facts }
       let(:params) { { 'app_ports' => [443] } }
 
       it { is_expected.to compile }
-      it { is_expected.to contain_firewall('110 allow tcp app ports').with(
-        'ensure' => 'present',
-        'dport'  => [443],
-        'proto'  => 'tcp',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow tcp app ports').with(
+          'ensure' => 'present',
+          'dport'  => [443],
+          'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
     end
 
-    context "with subnets" do
+    context 'with subnets' do
       let(:facts) { os_facts }
-      let(:params) { {
-        'pod_subnet'     => '10.48.0.0/24',
-        'service_subnet' => '10.48.1.0/24',
-      } }
+      let(:params) do
+        {
+          'pod_subnet'     => '10.48.0.0/24',
+          'service_subnet' => '10.48.1.0/24',
+        }
+      end
 
       it { is_expected.to compile }
-      it { is_expected.to contain_firewall('110 allow pod network').with(
-        'ensure' => 'present',
-        'source' => '10.48.0.0/24',
-        'proto'  => 'all',
-        'action' => 'accept',
-      ) }
-      it { is_expected.to contain_firewall('110 allow service network').with(
-        'ensure' => 'present',
-        'source' => '10.48.1.0/24',
-        'proto'  => 'all',
-        'action' => 'accept',
-      ) }
+      it {
+        is_expected.to contain_firewall('110 allow pod network').with(
+          'ensure' => 'present',
+          'source' => '10.48.0.0/24',
+          'proto'  => 'all',
+          'action' => 'accept',
+        )
+      }
+      it {
+        is_expected.to contain_firewall('110 allow service network').with(
+          'ensure' => 'present',
+          'source' => '10.48.1.0/24',
+          'proto'  => 'all',
+          'action' => 'accept',
+        )
+      }
     end
   end
 end
