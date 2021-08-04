@@ -1,17 +1,13 @@
+<!-- omit in toc -->
 # pam_firewall
 
 Configures firewall rules using the [firewall] module for Puppet Application Manager.
 
-## Table of Contents
-
-1. [Description](#description)
-1. [Setup - The basics of getting started with pam_firewall](#setup)
-    * [What pam_firewall affects](#what-pam_firewall-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with pam_firewall](#beginning-with-pam_firewall)
-1. [Usage - Configuration options and additional functionality](#usage)
-1. [Limitations - OS compatibility, etc.](#limitations)
-1. [Development - Guide for contributing to the module](#development)
+* [Description](#description)
+* [Usage](#usage)
+  * [HA cluster](#ha-cluster)
+  * [Application ports](#application-ports)
+  * [Subnets](#subnets)
 
 ## Description
 
@@ -21,9 +17,7 @@ The `preserve-iptables-config` option should be supplied while installing PAM to
 
 It specifically avoids purging foreign rules and chains created by Kubernetes. It also exposes ports to cluster members that need access (currently treats primary and secondary nodes identically) and exposes application ports globally.
 
-## Setup
-
-### Beginning with pam_firewall
+## Usage
 
 The module declares a single class that can be applied to your cluster members.
 
@@ -37,7 +31,7 @@ An [example](examples/init.pp) is provided that demonstrates using this while lo
     bolt module install
     bolt apply examples/init.pp --run-as root --targets $target
 
-## Usage
+### HA cluster
 
 If installing an HA cluster, you'll need to provide `cluster_nodes` for all members to enable intra-cluster communication
 
@@ -46,12 +40,16 @@ If installing an HA cluster, you'll need to provide `cluster_nodes` for all memb
         cluster_nodes => ['10.20.0.1', '10.20.0.2', '10.20.0.3'],
     }
 
+### Application ports
+
 You can also override `app_ports` to be more restrictive if not using all ports. For example, port 9001 is only used by CD4PE in an offline install, and port 8000 is only used by CD4PE for webhooks
 
     include ::firewall
     class {'::pam_firewall':
         app_ports => [443],
     }
+
+### Subnets
 
 If you need to override pod and/or service subnets for a PAM install, you'll also need to provide those here
 
