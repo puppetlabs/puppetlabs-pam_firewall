@@ -26,7 +26,6 @@
 .envrc
 /inventory.yaml
 /spec/fixtures/litmus_inventory.yaml
-
 /.modules/
 /.resource_types/
 /.plan_cache.json

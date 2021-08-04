@@ -5,4 +5,15 @@
 #
 # See https://github.com/puppetlabs/pdk-templates/blob/main/config_defaults.yml
 # for the default values.
---- {}
+---
+.gitlab-ci.yml:
+  delete: true
+appveyor.yml:
+  delete: true
+.gitignore:
+  paths:
+  - /.modules/
+  - /.resource_types/
+  - /.plan_cache.json
+  - /.task_cache.json
+  - /bolt-debug.log
