@@ -134,10 +134,10 @@ class pam_firewall (
       action => 'accept',
     }
 
-    firewall { "110 allow tcp ports 10250 from ${node} for Kubelet":
+    firewall { "110 allow tcp port 10250 from ${node} for Kubelet":
       ensure => present,
       source => $node,
-      dport  => [6443, 10250],
+      dport  => 10250,
       proto  => 'tcp',
       action => 'accept',
     }
