@@ -189,5 +189,20 @@ describe 'pam_firewall' do
         )
       }
     end
+
+    context 'without common firewallchains' do
+      let(:facts) { os_facts }
+      let(:params) { { 'manage_common_chains' => false } }
+
+      it { is_expected.not_to contain_firewallchain('INPUT:filter:IPv4') }
+      it { is_expected.not_to contain_firewallchain('OUTPUT:filter:IPv4') }
+      it { is_expected.not_to contain_firewallchain('FORWARD:filter:IPv4') }
+      it { is_expected.not_to contain_firewallchain('PREROUTING:nat:IPv4') }
+      it { is_expected.not_to contain_firewallchain('INPUT:nat:IPv4') }
+      it { is_expected.not_to contain_firewallchain('OUTPUT:nat:IPv4') }
+      it { is_expected.not_to contain_firewallchain('POSTROUTING:nat:IPv4') }
+      it { is_expected.not_to contain_firewallchain('PREROUTING:raw:IPv4') }
+      it { is_expected.not_to contain_firewallchain('OUTPUT:raw:IPv4') }
+    end
   end
 end

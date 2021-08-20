@@ -59,6 +59,29 @@ If you need to override pod and/or service subnets for a PAM install, you'll als
         service_subnet => '10.48.1.0/24',
     }
 
+### Managing common firewall chains
+
+If you manage common firewall chains explicitly and purge unknown rules, such as
+
+    firewallchain {'OUTPUT:filter:IPv4']:
+        policy => 'drop',
+        purge  => true,
+    }
+
+you'll need to disable this module's management of those chains and ignore foreign rules to avoid
+deleting rules created by Kubernetes
+
+    include ::firewall
+    class {'::pam_firewall':
+        manage_common_chains => false,
+    }
+
+    firewallchain {'OUTPUT:filter:IPv4']:
+        policy         => 'drop',
+        purge          => true,
+        ignore_foreign => true
+    }
+
 [firewall]: https://forge.puppet.com/modules/puppetlabs/firewall
 [Standalone]: https://puppet.com/docs/continuous-delivery/4.x/pam/pam-node-arch.html
 [Bolt]: http://pup.pt/installbolt

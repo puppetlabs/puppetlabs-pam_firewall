@@ -16,35 +16,45 @@
 # @param service_subnet
 #   The Kubernetes service subnet selected when installing PAM. Default
 #   matches the default for Puppet-supported Kubernetes.
+#
+# @param manage_common_chains
+#   These rules set `ignore_foreign=true` on common chains like
+#   INPUT/OUTPUT/FORWARD:filter:IPv4, PREROUTING/INPUT/OUTPUT/POSTROUTING:nat/mangle:IPv4,
+#   and PREROUTING/OUTPUT:raw:IPv4. If managing these chains yourself, set
+#   this to false; if you purge unknown firewall rules, set `ignore_foreign=true`
+#   on these chains so Kubernetes rules aren't removed.
 class pam_firewall (
   Array[String] $cluster_nodes = [$::ipaddress],
   Array[Variant[String, Integer]] $app_ports = [80, 443, 8000, 9001],
   String $pod_subnet = '10.32.0.0/22',
   String $service_subnet = '10.96.0.0/22',
+  Boolean $manage_common_chains = true,
 ) {
   # Avoid mangling Kubernetes rules in these chains.
   Firewallchain {
     ignore_foreign => true,
   }
 
-  firewallchain { 'INPUT:filter:IPv4':
-  }
-
-  firewallchain { 'OUTPUT:filter:IPv4':
-  }
-
-  firewallchain { 'FORWARD:filter:IPv4':
-  }
-
-  ['PREROUTING', 'INPUT', 'OUTPUT', 'POSTROUTING'].each |$chain| {
-    firewallchain { "${chain}:nat:IPv4":
+  if $manage_common_chains {
+    firewallchain { 'INPUT:filter:IPv4':
     }
-    firewallchain { "${chain}:mangle:IPv4":
-    }
-  }
 
-  ['PREROUTING', 'OUTPUT'].each |$chain| {
-    firewallchain { "${chain}:raw:IPv4":
+    firewallchain { 'OUTPUT:filter:IPv4':
+    }
+
+    firewallchain { 'FORWARD:filter:IPv4':
+    }
+
+    ['PREROUTING', 'INPUT', 'OUTPUT', 'POSTROUTING'].each |$chain| {
+      firewallchain { "${chain}:nat:IPv4":
+      }
+      firewallchain { "${chain}:mangle:IPv4":
+      }
+    }
+
+    ['PREROUTING', 'OUTPUT'].each |$chain| {
+      firewallchain { "${chain}:raw:IPv4":
+      }
     }
   }
 
