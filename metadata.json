@@ -1,7 +1,7 @@
 {
   "name": "puppetlabs-pam_firewall",
   "version": "1.0.0",
-  "author": "Puppet, Inc.",
+  "author": "puppetlabs",
   "summary": "Firewall rules for Puppet Application Manager",
   "license": "Apache-2.0",
   "source": "https://forge.puppetlabs.com/puppetlabs/pam_firewall",
