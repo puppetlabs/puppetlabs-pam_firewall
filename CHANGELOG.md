@@ -2,10 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-## Release 1.0.0
+## Release TBD
 
 **Features**
 
 **Bugfixes**
 
 **Known Issues**
+
+## Release 1.0.0
+
+Initial release.
