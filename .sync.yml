@@ -10,6 +10,10 @@
   delete: true
 appveyor.yml:
   delete: true
+Gemfile:
+  optional:
+    ":development":
+    - gem: github_changelog_generator
 .gitignore:
   paths:
   - /.modules/
@@ -17,3 +21,12 @@ appveyor.yml:
   - /.plan_cache.json
   - /.task_cache.json
   - /bolt-debug.log
+.github/workflows/auto_release.yml:
+  unmanaged: false
+.github/workflows/spec.yml:
+  checks: 'syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop'
+  unmanaged: false
+.github/workflows/release.yml:
+  unmanaged: false
+.travis.yml:
+  delete: true
