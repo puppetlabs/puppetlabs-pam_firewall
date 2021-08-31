@@ -24,6 +24,10 @@ Firewallchain {
   purge => true,
 }
 
+resources { 'firewallchain':
+    purge => true,
+}
+
 include ::pam_firewall
 
 firewall { '899 drop broadcast':
