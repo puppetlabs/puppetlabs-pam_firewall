@@ -31,6 +31,21 @@ An [example](examples/init.pp) is provided that demonstrates using this while lo
     bolt module install
     bolt apply examples/init.pp --run-as root --targets $target
 
+Note that this module ensures firewall rules created by Kubernetes remain if purging unknown rules in firewall chains and unknown firewall chains with
+
+    Firewallchain {
+        purge => true,
+    }
+    resources { 'firewallchain':
+        purge => true,
+    }
+
+but not if purging all unknown firewall rules with
+
+    resources { 'firewall':
+        purge => true,
+    }
+
 ### HA cluster
 
 If installing an HA cluster, you'll need to provide `cluster_nodes` for all members to enable intra-cluster communication
