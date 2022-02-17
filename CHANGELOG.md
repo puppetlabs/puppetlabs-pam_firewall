@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v1.0.2](https://github.com/puppetlabs/puppetlabs-pam_firewall/tree/v1.0.2) (2022-02-17)
+
+[Full Changelog](https://github.com/puppetlabs/puppetlabs-pam_firewall/compare/v1.0.0...v1.0.2)
+
+### Fixed
+
+- \(maint\) Adding another ipv6 chain for k8s 1.21 [\#9](https://github.com/puppetlabs/puppetlabs-pam_firewall/pull/9) ([abottchen](https://github.com/abottchen))
+- \(maint\) Adding additional k8s chains to preserve for 1.21.8 [\#8](https://github.com/puppetlabs/puppetlabs-pam_firewall/pull/8) ([abottchen](https://github.com/abottchen))
+- \(REPLATS-514\) Do not purge WEAVE-CANARY filrewallchains [\#7](https://github.com/puppetlabs/puppetlabs-pam_firewall/pull/7) ([jpartlow](https://github.com/jpartlow))
+- Document what types of purge are supported [\#6](https://github.com/puppetlabs/puppetlabs-pam_firewall/pull/6) ([MikaelSmith](https://github.com/MikaelSmith))
+
 ## [v1.0.0](https://github.com/puppetlabs/puppetlabs-pam_firewall/tree/v1.0.0) (2021-08-27)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-pam_firewall/compare/37ac9c2326390a44f8177ebd7c152287fd6a6ed8...v1.0.0)
