@@ -94,6 +94,8 @@ class pam_firewall (
     'WEAVE-NPC-EGRESS:filter:IPv4',
     'WEAVE-NPC-INGRESS:filter:IPv4',
     'WEAVE-NPC:filter:IPv4',
+    'WEAVE:nat:IPv4',
+    # Changes seen in PAM 2022-02-17 with k8s 1.21.8
     'KUBE-NODE-PORT:filter:IPv4',
     'KUBE-MARK-DROP:nat:IPv6',
     'KUBE-SERVICES:nat:IPv6',
@@ -106,7 +108,7 @@ class pam_firewall (
     'KUBE-NODE-PORT:filter:IPv6',
     'KUBE-FIREWALL:filter:IPv6',
     'KUBE-KUBELET-CANARY:filter:IPv6',
-    'WEAVE:nat:IPv4' ]:
+  ]:
     ensure => present,
     purge  => false,
   }
