@@ -108,6 +108,8 @@ class pam_firewall (
     'KUBE-NODE-PORT:filter:IPv6',
     'KUBE-FIREWALL:filter:IPv6',
     'KUBE-KUBELET-CANARY:filter:IPv6',
+    'KUBE-KUBELET-CANARY:mangle:IPv6',
+    'KUBE-KUBELET-CANARY:nat:IPv6',
   ]:
     ensure => present,
     purge  => false,
