@@ -29,7 +29,7 @@ The following parameters are available in the `pam_firewall` class:
 
 Data type: `Array[String]`
 
-Nodes in a cluster that need access to etcd, weave, and kubelet.
+Nodes in a cluster that need access to etcd, weave/flannel, and kubelet.
 Default works for Standalone architectures.
 
 Default value: `[$::ipaddress]`
