@@ -106,7 +106,14 @@ class pam_firewall (
     'KUBE-NODE-PORT:filter:IPv6',
     'KUBE-FIREWALL:filter:IPv6',
     'KUBE-KUBELET-CANARY:filter:IPv6',
-    'WEAVE:nat:IPv4' ]:
+    'WEAVE:nat:IPv4',
+    'KUBE-PROXY-FIREWALL:filter:IPv4',
+    'KUBE-SOURCE-RANGES-FIREWALL:filter:IPv4',
+    'KUBE-IPVS-FILTER:filter:IPv4',
+    'KUBE-PROXY-FIREWALL:filter:IPv6',
+    'KUBE-SOURCE-RANGES-FIREWALL:filter:IPv6',
+    'KUBE-IPVS-FILTER:filter:IPv6',
+    ]:
     ensure => present,
     purge  => false,
   }
