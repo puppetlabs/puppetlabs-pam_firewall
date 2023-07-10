@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v1.0.3](https://github.com/puppetlabs/puppetlabs-pam_firewall/tree/v1.0.3) (2023-07-10)
+
+### Fixed
+
+- \(CDPE-5425\) Updating rules for k8s 1.26 [\#14](https://github.com/puppetlabs/puppetlabs-pam_firewall/pull/14) ([abottchen](https://github.com/abottchen))
+
 ## [v1.0.2](https://github.com/puppetlabs/puppetlabs-pam_firewall/tree/v1.0.2) (2022-02-17)
 
 [Full Changelog](https://github.com/puppetlabs/puppetlabs-pam_firewall/compare/v1.0.0...v1.0.2)
