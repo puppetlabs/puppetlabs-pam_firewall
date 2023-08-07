@@ -2,7 +2,7 @@
 # Puppet-supported Kubernetes.
 #
 # @param cluster_nodes
-#   Nodes in a cluster that need access to etcd, weave, and kubelet.
+#   Nodes in a cluster that need access to etcd, weave/flannel, and kubelet.
 #   Default works for Standalone architectures.
 #
 # @param app_ports
@@ -68,17 +68,36 @@ class pam_firewall (
     'DOCKER:filter:IPv4',
     'DOCKER:nat:IPv4',
     'KUBE-FIREWALL:filter:IPv4',
+    'KUBE-FIREWALL:filter:IPv6',
     'KUBE-FIREWALL:nat:IPv4',
+    'KUBE-FIREWALL:nat:IPv6',
     'KUBE-FORWARD:filter:IPv4',
+    'KUBE-FORWARD:filter:IPv6',
+    'KUBE-IPVS-FILTER:filter:IPv4',
+    'KUBE-IPVS-FILTER:filter:IPv6',
     'KUBE-KUBELET-CANARY:filter:IPv4',
+    'KUBE-KUBELET-CANARY:filter:IPv6',
     'KUBE-KUBELET-CANARY:mangle:IPv4',
     'KUBE-KUBELET-CANARY:nat:IPv4',
     'KUBE-LOAD-BALANCER:nat:IPv4',
+    'KUBE-LOAD-BALANCER:nat:IPv6',
     'KUBE-MARK-DROP:nat:IPv4',
+    'KUBE-MARK-DROP:nat:IPv6',
     'KUBE-MARK-MASQ:nat:IPv4',
+    'KUBE-MARK-MASQ:nat:IPv6',
+    'KUBE-NODE-PORT:filter:IPv4',
+    'KUBE-NODE-PORT:filter:IPv6',
     'KUBE-NODE-PORT:nat:IPv4',
+    'KUBE-NODE-PORT:nat:IPv6',
     'KUBE-POSTROUTING:nat:IPv4',
+    'KUBE-POSTROUTING:nat:IPv6',
+    'KUBE-PROXY-FIREWALL:filter:IPv4',
+    'KUBE-PROXY-FIREWALL:filter:IPv6',
     'KUBE-SERVICES:nat:IPv4',
+    'KUBE-SERVICES:nat:IPv6',
+    'KUBE-SOURCE-RANGES-FIREWALL:filter:IPv4',
+    'KUBE-SOURCE-RANGES-FIREWALL:filter:IPv6',
+    # Weave chains
     'WEAVE-CANARY:filter:IPv4',
     'WEAVE-CANARY:mangle:IPv4',
     'WEAVE-CANARY:nat:IPv4',
@@ -94,25 +113,10 @@ class pam_firewall (
     'WEAVE-NPC-EGRESS:filter:IPv4',
     'WEAVE-NPC-INGRESS:filter:IPv4',
     'WEAVE-NPC:filter:IPv4',
-    'KUBE-NODE-PORT:filter:IPv4',
-    'KUBE-MARK-DROP:nat:IPv6',
-    'KUBE-SERVICES:nat:IPv6',
-    'KUBE-POSTROUTING:nat:IPv6',
-    'KUBE-FIREWALL:nat:IPv6',
-    'KUBE-NODE-PORT:nat:IPv6',
-    'KUBE-LOAD-BALANCER:nat:IPv6',
-    'KUBE-MARK-MASQ:nat:IPv6',
-    'KUBE-FORWARD:filter:IPv6',
-    'KUBE-NODE-PORT:filter:IPv6',
-    'KUBE-FIREWALL:filter:IPv6',
-    'KUBE-KUBELET-CANARY:filter:IPv6',
     'WEAVE:nat:IPv4',
-    'KUBE-PROXY-FIREWALL:filter:IPv4',
-    'KUBE-SOURCE-RANGES-FIREWALL:filter:IPv4',
-    'KUBE-IPVS-FILTER:filter:IPv4',
-    'KUBE-PROXY-FIREWALL:filter:IPv6',
-    'KUBE-SOURCE-RANGES-FIREWALL:filter:IPv6',
-    'KUBE-IPVS-FILTER:filter:IPv6',
+    # Flannel chains
+    'FLANNEL-FWD:filter:IPv4',
+    'FLANNEL-POSTRTG:nat:IPv4',
     ]:
     ensure => present,
     purge  => false,
@@ -147,6 +151,14 @@ class pam_firewall (
       source => $node,
       dport  => [2379, 2380],
       proto  => 'tcp',
+      action => 'accept',
+    }
+
+    firewall { "110 allow udp port 8472 from ${node} for Flannel":
+      ensure => present,
+      source => $node,
+      dport  => 8472,
+      proto  => 'udp',
       action => 'accept',
     }
 

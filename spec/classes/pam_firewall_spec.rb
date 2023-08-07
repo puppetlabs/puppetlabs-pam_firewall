@@ -30,6 +30,16 @@ describe 'pam_firewall' do
       }
 
       it {
+        is_expected.to contain_firewall('110 allow udp port 8472 from 172.16.254.254 for Flannel').with(
+          'ensure' => 'present',
+          'source' => '172.16.254.254',
+          'dport'  => 8_472,
+          'proto'  => 'udp',
+          'action' => 'accept',
+        )
+      }
+
+      it {
         is_expected.to contain_firewall('110 allow tcp port 6783 from 172.16.254.254 for Weave').with(
           'ensure' => 'present',
           'source' => '172.16.254.254',
@@ -77,6 +87,16 @@ describe 'pam_firewall' do
       }
 
       it {
+        is_expected.to contain_firewall('110 allow udp port 8472 from 172.16.0.0 for Flannel').with(
+          'ensure' => 'present',
+          'source' => '172.16.0.0',
+          'dport'  => 8_472,
+          'proto'  => 'udp',
+          'action' => 'accept',
+        )
+      }
+
+      it {
         is_expected.to contain_firewall('110 allow tcp port 6783 from 172.16.0.0 for Weave').with(
           'ensure' => 'present',
           'source' => '172.16.0.0',
@@ -112,6 +132,16 @@ describe 'pam_firewall' do
           'source' => '172.16.0.1',
           'dport'  => [2_379, 2_380],
           'proto'  => 'tcp',
+          'action' => 'accept',
+        )
+      }
+
+      it {
+        is_expected.to contain_firewall('110 allow udp port 8472 from 172.16.0.1 for Flannel').with(
+          'ensure' => 'present',
+          'source' => '172.16.0.1',
+          'dport'  => 8_472,
+          'proto'  => 'udp',
           'action' => 'accept',
         )
       }
