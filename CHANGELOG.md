@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org).
 
+## [v1.0.4](https://github.com/puppetlabs/puppetlabs-pam_firewall/tree/v1.0.4) (2023-08-08)
+
+### Fixed
+
+- \(CDPE-5716\) Update to support Flannel CNI [\#13](https://github.com/puppetlabs/puppetlabs-pam_firewall/pull/13) ([abottchen](https://github.com/abottchen))
+
 ## [v1.0.3](https://github.com/puppetlabs/puppetlabs-pam_firewall/tree/v1.0.3) (2023-07-10)
 
 ### Fixed
