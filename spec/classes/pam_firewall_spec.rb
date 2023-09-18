@@ -25,7 +25,7 @@ describe 'pam_firewall' do
           'source' => '172.16.254.254',
           'dport'  => [2_379, 2_380],
           'proto'  => 'tcp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -35,7 +35,7 @@ describe 'pam_firewall' do
           'source' => '172.16.254.254',
           'dport'  => 8_472,
           'proto'  => 'udp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -45,7 +45,7 @@ describe 'pam_firewall' do
           'source' => '172.16.254.254',
           'dport'  => 6_783,
           'proto'  => 'tcp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -55,7 +55,7 @@ describe 'pam_firewall' do
           'source' => '172.16.254.254',
           'dport'  => [6_783, 6_784],
           'proto'  => 'udp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -65,7 +65,7 @@ describe 'pam_firewall' do
           'source' => '172.16.254.254',
           'dport'  => 10_250,
           'proto'  => 'tcp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
     end
@@ -82,7 +82,7 @@ describe 'pam_firewall' do
           'source' => '172.16.0.0',
           'dport'  => [2_379, 2_380],
           'proto'  => 'tcp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -92,7 +92,7 @@ describe 'pam_firewall' do
           'source' => '172.16.0.0',
           'dport'  => 8_472,
           'proto'  => 'udp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -102,7 +102,7 @@ describe 'pam_firewall' do
           'source' => '172.16.0.0',
           'dport'  => 6_783,
           'proto'  => 'tcp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -112,7 +112,7 @@ describe 'pam_firewall' do
           'source' => '172.16.0.0',
           'dport'  => [6_783, 6_784],
           'proto'  => 'udp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -122,7 +122,7 @@ describe 'pam_firewall' do
           'source' => '172.16.0.0',
           'dport'  => 10_250,
           'proto'  => 'tcp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -132,7 +132,7 @@ describe 'pam_firewall' do
           'source' => '172.16.0.1',
           'dport'  => [2_379, 2_380],
           'proto'  => 'tcp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -142,7 +142,7 @@ describe 'pam_firewall' do
           'source' => '172.16.0.1',
           'dport'  => 8_472,
           'proto'  => 'udp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -152,7 +152,7 @@ describe 'pam_firewall' do
           'source' => '172.16.0.1',
           'dport'  => 6_783,
           'proto'  => 'tcp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -162,7 +162,7 @@ describe 'pam_firewall' do
           'source' => '172.16.0.1',
           'dport'  => [6_783, 6_784],
           'proto'  => 'udp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
 
@@ -172,7 +172,7 @@ describe 'pam_firewall' do
           'source' => '172.16.0.1',
           'dport'  => 10_250,
           'proto'  => 'tcp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
     end
@@ -187,7 +187,7 @@ describe 'pam_firewall' do
           'ensure' => 'present',
           'dport'  => [443],
           'proto'  => 'tcp',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
     end
@@ -207,7 +207,7 @@ describe 'pam_firewall' do
           'ensure' => 'present',
           'source' => '10.48.0.0/24',
           'proto'  => 'all',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
       it {
@@ -215,7 +215,7 @@ describe 'pam_firewall' do
           'ensure' => 'present',
           'source' => '10.48.1.0/24',
           'proto'  => 'all',
-          'action' => 'accept',
+          'jump'   => 'accept',
         )
       }
     end

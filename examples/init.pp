@@ -1,23 +1,23 @@
 include ::firewall
 
 firewall { '000 accept all icmp':
-  proto  => 'icmp',
-  action => 'accept',
+  proto => 'icmp',
+  jump  => 'accept',
 }
 -> firewall { '001 accept all to lo interface':
   proto   => 'all',
   iniface => 'lo',
-  action  => 'accept',
+  jump    => 'accept',
 }
 -> firewall { '002 accept related established rules':
-  proto  => 'all',
-  state  => ['RELATED', 'ESTABLISHED'],
-  action => 'accept',
+  proto => 'all',
+  state => ['RELATED', 'ESTABLISHED'],
+  jump  => 'accept',
 }
 -> firewall { '003 accept inbound SSH':
-  dport  => 22,
-  proto  => 'tcp',
-  action => 'accept',
+  dport => 22,
+  proto => 'tcp',
+  jump  => 'accept',
 }
 
 Firewallchain {
@@ -31,7 +31,7 @@ resources { 'firewallchain':
 include ::pam_firewall
 
 firewall { '899 drop broadcast':
-  action   => 'drop',
+  jump     => 'drop',
   dst_type => 'BROADCAST',
   proto    => 'all',
 }
@@ -45,6 +45,6 @@ firewall { '900 INPUT denies get logged':
 }
 
 firewall { '999 drop all':
-  proto  => 'all',
-  action => 'drop',
+  proto => 'all',
+  jump  => 'drop',
 }
