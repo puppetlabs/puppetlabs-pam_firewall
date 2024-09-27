@@ -1,8 +1,8 @@
 include firewall
 
 firewall { '000 accept all icmp':
-  proto  => 'icmp',
-  jump   => 'accept',
+  proto => 'icmp',
+  jump  => 'accept',
 }
 -> firewall { '001 accept all to lo interface':
   proto   => 'all',
@@ -10,14 +10,14 @@ firewall { '000 accept all icmp':
   action  => 'accept',
 }
 -> firewall { '002 accept related established rules':
-  proto  => 'all',
-  state  => ['RELATED', 'ESTABLISHED'],
-  jump   => 'accept',
+  proto => 'all',
+  state => ['RELATED', 'ESTABLISHED'],
+  jump  => 'accept',
 }
 -> firewall { '003 accept inbound SSH':
-  dport  => 22,
-  proto  => 'tcp',
-  jump   => 'accept',
+  dport => 22,
+  proto => 'tcp',
+  jump  => 'accept',
 }
 
 Firewallchain {
@@ -45,6 +45,6 @@ firewall { '900 INPUT denies get logged':
 }
 
 firewall { '999 drop all':
-  proto  => 'all',
-  jump   => 'accept',
+  proto => 'all',
+  jump  => 'accept',
 }

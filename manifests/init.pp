@@ -175,7 +175,7 @@ class pam_firewall (
       source => $node,
       dport  => [6783, 6784],
       proto  => 'udp',
-      action => 'accept',
+      jump   => 'accept',
     }
 
     firewall { "110 allow tcp port 10250 from ${node} for Kubelet":
