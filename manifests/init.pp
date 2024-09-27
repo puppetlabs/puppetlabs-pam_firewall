@@ -127,21 +127,21 @@ class pam_firewall (
     ensure => present,
     dport  => 8800,
     proto  => 'tcp',
-    action => 'accept',
+    jump   => 'accept',
   }
 
   firewall { '110 allow tcp app ports':
     ensure => present,
     dport  => $app_ports,
     proto  => 'tcp',
-    action => 'accept',
+    jump   => 'accept',
   }
 
   firewall { '110 allow tcp port 6443 for Kubernetes API':
     ensure => present,
     dport  => 6443,
     proto  => 'tcp',
-    action => 'accept',
+    jump   => 'accept',
   }
 
   # Rules for intra-cluster communication
@@ -151,7 +151,7 @@ class pam_firewall (
       source => $node,
       dport  => [2379, 2380],
       proto  => 'tcp',
-      action => 'accept',
+      jump   => 'accept',
     }
 
     firewall { "110 allow udp port 8472 from ${node} for Flannel":
@@ -159,7 +159,7 @@ class pam_firewall (
       source => $node,
       dport  => 8472,
       proto  => 'udp',
-      action => 'accept',
+      jump   => 'accept',
     }
 
     firewall { "110 allow tcp port 6783 from ${node} for Weave":
@@ -167,7 +167,7 @@ class pam_firewall (
       source => $node,
       dport  => 6783,
       proto  => 'tcp',
-      action => 'accept',
+      jump   => 'accept',
     }
 
     firewall { "110 allow udp ports 6783-6784 from ${node} for Weave":
@@ -183,7 +183,7 @@ class pam_firewall (
       source => $node,
       dport  => 10250,
       proto  => 'tcp',
-      action => 'accept',
+      jump   => 'accept',
     }
   }
 
@@ -192,13 +192,13 @@ class pam_firewall (
     ensure => present,
     source => $pod_subnet,
     proto  => 'all',
-    action => 'accept',
+    jump   => 'accept',
   }
 
   firewall { '110 allow service network':
     ensure => present,
     source => $service_subnet,
     proto  => 'all',
-    action => 'accept',
+    jump   => 'accept',
   }
 }
