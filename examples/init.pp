@@ -1,4 +1,4 @@
-include ::firewall
+include firewall
 
 firewall { '000 accept all icmp':
   proto  => 'icmp',
@@ -25,10 +25,10 @@ Firewallchain {
 }
 
 resources { 'firewallchain':
-    purge => true,
+  purge => true,
 }
 
-include ::pam_firewall
+include pam_firewall
 
 firewall { '899 drop broadcast':
   action   => 'drop',
