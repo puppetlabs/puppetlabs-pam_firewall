@@ -37,7 +37,6 @@ group :development do
   gem "puppet-strings", '~> 4.0',                require: false
   gem "rb-readline", '= 0.5.5',                  require: false, platforms: [:mswin, :mingw, :x64_mingw]
   gem "github_changelog_generator",              require: false
-  gem 'puppet-lint-stdlib_deprecations',         require: false
 end
 group :system_tests do
   gem "puppet_litmus", '~> 1.0', require: false, platforms: [:ruby, :x64_mingw]
