@@ -75,6 +75,8 @@ class pam_firewall (
     'KUBE-FORWARD:filter:IPv6',
     'KUBE-IPVS-FILTER:filter:IPv4',
     'KUBE-IPVS-FILTER:filter:IPv6',
+    'KUBE-IPVS-OUT-FILTER:filter:IPv4',
+    'KUBE-IPVS-OUT-FILTER:filter:IPv6',
     'KUBE-KUBELET-CANARY:filter:IPv4',
     'KUBE-KUBELET-CANARY:filter:IPv6',
     'KUBE-KUBELET-CANARY:mangle:IPv4',
