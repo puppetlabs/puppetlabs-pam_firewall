@@ -4,5 +4,5 @@
 # The following directive installs modules to the managed moduledir.
 moduledir '.modules'
 
-mod 'puppetlabs/firewall', '3.1.0'
+mod 'puppetlabs/firewall', '3.6.0'
 mod 'puppetlabs/stdlib', '7.1.0'
