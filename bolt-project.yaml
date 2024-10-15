@@ -1,4 +1,5 @@
 ---
 name: pam_firewall
 modules:
-- puppetlabs/firewall
+- name: puppetlabs/firewall
+  version_requirement: '3.6.0'

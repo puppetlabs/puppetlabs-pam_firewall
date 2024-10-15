@@ -24,7 +24,7 @@
 #   this to false; if you purge unknown firewall rules, set `ignore_foreign=true`
 #   on these chains so Kubernetes rules aren't removed.
 class pam_firewall (
-  Array[String] $cluster_nodes = [$::ipaddress],
+  Array[String] $cluster_nodes = [$facts['networking']['ip']],
   Array[Variant[String, Integer]] $app_ports = [80, 443, 8000, 9001],
   String $pod_subnet = '10.32.0.0/22',
   String $service_subnet = '10.96.0.0/22',
@@ -75,6 +75,8 @@ class pam_firewall (
     'KUBE-FORWARD:filter:IPv6',
     'KUBE-IPVS-FILTER:filter:IPv4',
     'KUBE-IPVS-FILTER:filter:IPv6',
+    'KUBE-IPVS-OUT-FILTER:filter:IPv4',
+    'KUBE-IPVS-OUT-FILTER:filter:IPv6',
     'KUBE-KUBELET-CANARY:filter:IPv4',
     'KUBE-KUBELET-CANARY:filter:IPv6',
     'KUBE-KUBELET-CANARY:mangle:IPv4',
